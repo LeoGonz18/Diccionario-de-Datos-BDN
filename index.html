@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101721"><title>Atlas · Documentación de datos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
+</head>
+<body><div class="app-shell">
+  <aside class="sidebar"><a class="brand" href="#"><span class="brand-icon">a</span><span>atlas<small>DATA CATALOG</small></span></a>
+    <div class="source"><span class="source-dot"></span><span><b>db_test</b><small>MySQL 8.0.36 · respaldo</small></span><span class="source-more">•••</span></div>
+    <label class="search"><span>⌕</span><input id="search" placeholder="Buscar tabla o atributo…" autocomplete="off"><kbd>⌘ K</kbd></label>
+    <div class="nav-title">CATÁLOGO <span id="table-count">—</span></div><nav id="table-nav"></nav>
+    <div class="sidebar-bottom"><span class="tiny-orb">✳</span><span>Esquema documentado<br><small id="source-label">Fuente SQL verificada</small></span></div>
+  </aside>
+  <main class="main"><header class="topbar"><div class="crumb">Espacios <i>/</i> <b>db_test</b> <i>/</i> <span id="crumb-table">Resumen</span></div><div class="top-actions"><span class="live"><i></i> SQL analizado</span><button id="theme" class="icon-btn" title="Cambiar tema">◐</button><button id="diagram-jump" class="outline-btn">⌘ <span>Modelo de datos</span> ↗</button></div></header>
+  <section class="content" id="content"><div id="overview"></div><div id="table-view" hidden></div></section>
+  <footer>Atlas <span>·</span> Documentación generada desde el esquema SQL <span class="footer-right">Las interpretaciones semánticas se identifican como inferencias.</span></footer></main>
+</div><script src="schema-docs.js"></script><script src="app.js"></script></body></html>
