@@ -1,6 +1,6 @@
 {
   "database": "db_test",
-  "source": "Practica 03/backups/Respaldo_20102026.sql",
+  "source": "Practica 03/backups/Respaldo_29102026.sql",
   "mysql": "8.0.36",
   "tables": [
     {
@@ -116,7 +116,7 @@
     },
     {
       "name": "tb_logs",
-      "engine": "InnoDB AUTO_INCREMENT=57841 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "engine": "InnoDB AUTO_INCREMENT=78291 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
       "columns": [
         {
           "name": "ID",
@@ -241,6 +241,282 @@
       ],
       "foreignKeys": [],
       "checkConstraints": []
+    },
+    {
+      "name": "tb_order_cancellations",
+      "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK"
+          ],
+          "references": []
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_cancellations_order",
+            "FK fk_cancellations_order"
+          ],
+          "references": [
+            "tb_orders.ID"
+          ]
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_cancellations_buyer_order"
+          ],
+          "references": []
+        },
+        {
+          "name": "requested_by_user_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_cancellations_requester",
+            "FK fk_cancellations_requester"
+          ],
+          "references": [
+            "tb_users.ID"
+          ]
+        },
+        {
+          "name": "cancellation_scope",
+          "type": "enum('WholeOrder','Items')",
+          "declaration": "enum('WholeOrder','Items') NOT NULL DEFAULT 'WholeOrder'",
+          "nullable": false,
+          "default": "'WholeOrder'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "reason_code",
+          "type": "varchar(60)",
+          "declaration": "varchar(60) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "reason_detail",
+          "type": "varchar(1000)",
+          "declaration": "varchar(1000) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "cancellation_status",
+          "type": "enum('Requested','Approved','Rejected','Completed')",
+          "declaration": "enum('Requested','Approved','Rejected','Completed') NOT NULL DEFAULT 'Requested'",
+          "nullable": false,
+          "default": "'Requested'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "requested_at",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "reviewed_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "completed_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "internal_notes",
+          "type": "varchar(1000)",
+          "declaration": "varchar(1000) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "ID"
+      ],
+      "indexes": [
+        {
+          "name": "idx_cancellations_order",
+          "columns": [
+            "order_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_cancellations_buyer_order",
+          "columns": [
+            "buyer_order_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_cancellations_requester",
+          "columns": [
+            "requested_by_user_ID"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_cancellations_order",
+          "columns": [
+            "order_ID"
+          ],
+          "target": "tb_orders",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_cancellations_requester",
+          "columns": [
+            "requested_by_user_ID"
+          ],
+          "target": "tb_users",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": [
+        {
+          "name": "chk_cancellations_target",
+          "expression": "(((`order_ID` is not null) and (`buyer_order_ID` is null)))"
+        }
+      ]
     },
     {
       "name": "tb_orders",
@@ -371,6 +647,48 @@
           "declaration": "datetime DEFAULT NULL",
           "nullable": true,
           "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2)",
+          "declaration": "decimal(12,2) NOT NULL DEFAULT '0.00'",
+          "nullable": false,
+          "default": "'0.00'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "shipping_cost",
+          "type": "decimal(12,2)",
+          "declaration": "decimal(12,2) NOT NULL DEFAULT '0.00'",
+          "nullable": false,
+          "default": "'0.00'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "fulfillment_status",
+          "type": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned')",
+          "declaration": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') NOT NULL DEFAULT 'Pending'",
+          "nullable": false,
+          "default": "'Pending'",
           "autoIncrement": false,
           "generated": false,
           "generatedExpression": null,
@@ -516,6 +834,342 @@
       ],
       "foreignKeys": [],
       "checkConstraints": []
+    },
+    {
+      "name": "tb_payment_transaction",
+      "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK"
+          ],
+          "references": []
+        },
+        {
+          "name": "payment_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_payment_transaction_payment",
+            "INDEX fk_payment_transaction_refund_payment",
+            "FK fk_payment_transaction_payment",
+            "FK fk_payment_transaction_refund_payment"
+          ],
+          "references": [
+            "tb_payments.ID",
+            "tb_refunds.payment_ID"
+          ]
+        },
+        {
+          "name": "refund_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_payment_transaction_refund",
+            "INDEX fk_payment_transaction_refund_payment",
+            "FK fk_payment_transaction_refund_payment"
+          ],
+          "references": [
+            "tb_refunds.ID"
+          ]
+        },
+        {
+          "name": "transaction_type",
+          "type": "enum('Authorization','Capture','Charge','Void','Refund','Chargeback','Adjustment')",
+          "declaration": "enum('Authorization','Capture','Charge','Void','Refund','Chargeback','Adjustment') NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "transaction_status",
+          "type": "enum('Pending','Succeeded','Failed')",
+          "declaration": "enum('Pending','Succeeded','Failed') NOT NULL DEFAULT 'Pending'",
+          "nullable": false,
+          "default": "'Pending'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "amount",
+          "type": "decimal(10,2)",
+          "declaration": "decimal(10,2) NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "declaration": "char(3) NOT NULL DEFAULT 'MXN'",
+          "nullable": false,
+          "default": "'MXN'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "provider",
+          "type": "varchar(60)",
+          "declaration": "varchar(60) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_payment_transaction_provider_ref",
+            "UNIQUE uk_payment_transaction_idempotency"
+          ],
+          "references": []
+        },
+        {
+          "name": "provider_transaction_id",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_payment_transaction_provider_ref"
+          ],
+          "references": []
+        },
+        {
+          "name": "idempotency_key",
+          "type": "varchar(100)",
+          "declaration": "varchar(100) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_payment_transaction_idempotency"
+          ],
+          "references": []
+        },
+        {
+          "name": "response_code",
+          "type": "varchar(100)",
+          "declaration": "varchar(100) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "response_message",
+          "type": "varchar(500)",
+          "declaration": "varchar(500) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "request_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "response_date",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "ID"
+      ],
+      "indexes": [
+        {
+          "name": "uk_payment_transaction_provider_ref",
+          "columns": [
+            "provider",
+            "provider_transaction_id"
+          ],
+          "unique": true
+        },
+        {
+          "name": "uk_payment_transaction_idempotency",
+          "columns": [
+            "provider",
+            "idempotency_key"
+          ],
+          "unique": true
+        },
+        {
+          "name": "idx_payment_transaction_payment",
+          "columns": [
+            "payment_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_payment_transaction_refund",
+          "columns": [
+            "refund_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "fk_payment_transaction_refund_payment",
+          "columns": [
+            "refund_ID",
+            "payment_ID"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_payment_transaction_payment",
+          "columns": [
+            "payment_ID"
+          ],
+          "target": "tb_payments",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_payment_transaction_refund_payment",
+          "columns": [
+            "refund_ID",
+            "payment_ID"
+          ],
+          "target": "tb_refunds",
+          "targetColumns": [
+            "ID",
+            "payment_ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": [
+        {
+          "name": "chk_payment_transaction_amount",
+          "expression": "((`amount` > 0))"
+        },
+        {
+          "name": "chk_payment_transaction_refund",
+          "expression": "(((`transaction_type` <> _utf8mb4'Refund') or (`refund_ID` is not null)))"
+        }
+      ]
     },
     {
       "name": "tb_payments",
@@ -755,6 +1409,215 @@
       ]
     },
     {
+      "name": "tb_people",
+      "engine": "InnoDB AUTO_INCREMENT=16386 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "person_ID",
+          "type": "bigint unsigned",
+          "declaration": "bigint unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK"
+          ],
+          "references": []
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_people_user_ID",
+            "FK fk_people_user"
+          ],
+          "references": [
+            "tb_users.ID"
+          ]
+        },
+        {
+          "name": "title",
+          "type": "varchar(30)",
+          "declaration": "varchar(30) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "given_names",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "family_names",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "birth_date",
+          "type": "date",
+          "declaration": "date DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "gender_ID",
+          "type": "enum('H','M','Prefiero no decirlo')",
+          "declaration": "enum('H','M','Prefiero no decirlo') DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "phone",
+          "type": "varchar(25)",
+          "declaration": "varchar(25) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "country_code",
+          "type": "char(2)",
+          "declaration": "char(2) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "declaration": "bit(1) NOT NULL DEFAULT b'1'",
+          "nullable": false,
+          "default": "b'1'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "person_ID"
+      ],
+      "indexes": [
+        {
+          "name": "idx_people_user_ID",
+          "columns": [
+            "user_ID"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_people_user",
+          "columns": [
+            "user_ID"
+          ],
+          "target": "tb_users",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "RESTRICT",
+          "onUpdate": "CASCADE",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": []
+    },
+    {
       "name": "tb_products",
       "engine": "InnoDB AUTO_INCREMENT=24977 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
       "columns": [
@@ -903,6 +1766,1056 @@
       ],
       "foreignKeys": [],
       "checkConstraints": []
+    },
+    {
+      "name": "tb_refunds",
+      "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK",
+            "UNIQUE uk_refunds_id_payment"
+          ],
+          "references": []
+        },
+        {
+          "name": "payment_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_refunds_id_payment",
+            "INDEX idx_refunds_payment",
+            "FK fk_refunds_payment"
+          ],
+          "references": [
+            "tb_payments.ID"
+          ]
+        },
+        {
+          "name": "cancellation_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_refunds_cancellation",
+            "FK fk_refunds_cancellation"
+          ],
+          "references": [
+            "tb_order_cancellations.ID"
+          ]
+        },
+        {
+          "name": "return_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_refunds_return",
+            "FK fk_refunds_return"
+          ],
+          "references": [
+            "tb_returns.ID"
+          ]
+        },
+        {
+          "name": "reason",
+          "type": "enum('Cancellation','Return','Adjustment','Goodwill')",
+          "declaration": "enum('Cancellation','Return','Adjustment','Goodwill') NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "amount",
+          "type": "decimal(10,2)",
+          "declaration": "decimal(10,2) NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "currency",
+          "type": "char(3)",
+          "declaration": "char(3) NOT NULL DEFAULT 'MXN'",
+          "nullable": false,
+          "default": "'MXN'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "refund_status",
+          "type": "enum('Pending','Submitted','Succeeded','Failed','Canceled')",
+          "declaration": "enum('Pending','Submitted','Succeeded','Failed','Canceled') NOT NULL DEFAULT 'Pending'",
+          "nullable": false,
+          "default": "'Pending'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "provider",
+          "type": "varchar(60)",
+          "declaration": "varchar(60) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_refunds_provider_reference"
+          ],
+          "references": []
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_refunds_provider_reference"
+          ],
+          "references": []
+        },
+        {
+          "name": "requested_by_user_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_refunds_requester",
+            "FK fk_refunds_requester"
+          ],
+          "references": [
+            "tb_users.ID"
+          ]
+        },
+        {
+          "name": "reason_detail",
+          "type": "varchar(1000)",
+          "declaration": "varchar(1000) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "requested_at",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "processed_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "ID"
+      ],
+      "indexes": [
+        {
+          "name": "uk_refunds_id_payment",
+          "columns": [
+            "ID",
+            "payment_ID"
+          ],
+          "unique": true
+        },
+        {
+          "name": "uk_refunds_provider_reference",
+          "columns": [
+            "provider",
+            "provider_reference"
+          ],
+          "unique": true
+        },
+        {
+          "name": "idx_refunds_payment",
+          "columns": [
+            "payment_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_refunds_cancellation",
+          "columns": [
+            "cancellation_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_refunds_return",
+          "columns": [
+            "return_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_refunds_requester",
+          "columns": [
+            "requested_by_user_ID"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_refunds_cancellation",
+          "columns": [
+            "cancellation_ID"
+          ],
+          "target": "tb_order_cancellations",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_refunds_payment",
+          "columns": [
+            "payment_ID"
+          ],
+          "target": "tb_payments",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_refunds_requester",
+          "columns": [
+            "requested_by_user_ID"
+          ],
+          "target": "tb_users",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_refunds_return",
+          "columns": [
+            "return_ID"
+          ],
+          "target": "tb_returns",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": [
+        {
+          "name": "chk_refunds_amount",
+          "expression": "((`amount` > 0))"
+        },
+        {
+          "name": "chk_refunds_source",
+          "expression": "((((`reason` = _utf8mb4'Cancellation') and (`cancellation_ID` is not null) and (`return_ID` is null)) or ((`reason` = _utf8mb4'Return') and (`return_ID` is not null) and (`cancellation_ID` is null)) or ((`reason` in (_utf8mb4'Adjustment',_utf8mb4'Goodwill')) and (`cancellation_ID` is null) and (`return_ID` is null))))"
+        }
+      ]
+    },
+    {
+      "name": "tb_returns",
+      "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK"
+          ],
+          "references": []
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_returns_buyer_order",
+            "FK fk_returns_order"
+          ],
+          "references": [
+            "tb_orders.ID"
+          ]
+        },
+        {
+          "name": "requested_by_user_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_returns_requester",
+            "FK fk_returns_requester"
+          ],
+          "references": [
+            "tb_users.ID"
+          ]
+        },
+        {
+          "name": "reason_code",
+          "type": "varchar(60)",
+          "declaration": "varchar(60) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "reason_detail",
+          "type": "varchar(1000)",
+          "declaration": "varchar(1000) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "return_status",
+          "type": "enum('Requested','Authorized','Rejected','LabelCreated','InTransit','Received','Inspected','Approved','PartiallyApproved','Refunded','Closed')",
+          "declaration": "enum('Requested','Authorized','Rejected','LabelCreated','InTransit','Received','Inspected','Approved','PartiallyApproved','Refunded','Closed') NOT NULL DEFAULT 'Requested'",
+          "nullable": false,
+          "default": "'Requested'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "return_carrier",
+          "type": "varchar(100)",
+          "declaration": "varchar(100) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_returns_tracking"
+          ],
+          "references": []
+        },
+        {
+          "name": "return_tracking_number",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_returns_tracking"
+          ],
+          "references": []
+        },
+        {
+          "name": "requested_at",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "authorized_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "received_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "closed_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "internal_notes",
+          "type": "varchar(1000)",
+          "declaration": "varchar(1000) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "ID"
+      ],
+      "indexes": [
+        {
+          "name": "idx_returns_buyer_order",
+          "columns": [
+            "buyer_order_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_returns_requester",
+          "columns": [
+            "requested_by_user_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_returns_tracking",
+          "columns": [
+            "return_carrier",
+            "return_tracking_number"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_returns_order",
+          "columns": [
+            "buyer_order_ID"
+          ],
+          "target": "tb_orders",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_returns_requester",
+          "columns": [
+            "requested_by_user_ID"
+          ],
+          "target": "tb_users",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": []
+    },
+    {
+      "name": "tb_shipments",
+      "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK"
+          ],
+          "references": []
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_shipments_buyer_order",
+            "FK fk_shipments_order"
+          ],
+          "references": [
+            "tb_orders.ID"
+          ]
+        },
+        {
+          "name": "address_ID",
+          "type": "bigint unsigned",
+          "declaration": "bigint unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_shipments_address",
+            "FK fk_shipments_address"
+          ],
+          "references": [
+            "tb_user_addresses.ID"
+          ]
+        },
+        {
+          "name": "recipient_name",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "recipient_phone",
+          "type": "varchar(25)",
+          "declaration": "varchar(25) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "address_line_1",
+          "type": "varchar(255)",
+          "declaration": "varchar(255) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "address_line_2",
+          "type": "varchar(255)",
+          "declaration": "varchar(255) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "city",
+          "type": "varchar(120)",
+          "declaration": "varchar(120) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "state_region",
+          "type": "varchar(120)",
+          "declaration": "varchar(120) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "postal_code",
+          "type": "varchar(20)",
+          "declaration": "varchar(20) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "country_code",
+          "type": "char(2)",
+          "declaration": "char(2) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "carrier",
+          "type": "varchar(100)",
+          "declaration": "varchar(100) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_shipments_tracking"
+          ],
+          "references": []
+        },
+        {
+          "name": "service_level",
+          "type": "varchar(100)",
+          "declaration": "varchar(100) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "tracking_number",
+          "type": "varchar(150)",
+          "declaration": "varchar(150) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "INDEX idx_shipments_tracking"
+          ],
+          "references": []
+        },
+        {
+          "name": "tracking_url",
+          "type": "varchar(500)",
+          "declaration": "varchar(500) DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "shipment_status",
+          "type": "enum('Pending','LabelCreated','ReadyToShip','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned')",
+          "declaration": "enum('Pending','LabelCreated','ReadyToShip','InTransit','OutForDelivery','Delivered','DeliveryFailed','Lost','Returned') NOT NULL DEFAULT 'Pending'",
+          "nullable": false,
+          "default": "'Pending'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "shipping_cost",
+          "type": "decimal(12,2)",
+          "declaration": "decimal(12,2) NOT NULL DEFAULT '0.00'",
+          "nullable": false,
+          "default": "'0.00'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "shipped_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "estimated_delivery_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "delivered_at",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "ID"
+      ],
+      "indexes": [
+        {
+          "name": "idx_shipments_buyer_order",
+          "columns": [
+            "buyer_order_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_shipments_address",
+          "columns": [
+            "address_ID"
+          ],
+          "unique": false
+        },
+        {
+          "name": "idx_shipments_tracking",
+          "columns": [
+            "carrier",
+            "tracking_number"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_shipments_address",
+          "columns": [
+            "address_ID"
+          ],
+          "target": "tb_user_addresses",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_shipments_order",
+          "columns": [
+            "buyer_order_ID"
+          ],
+          "target": "tb_orders",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": [
+        {
+          "name": "chk_shipments_shipping_cost",
+          "expression": "((`shipping_cost` >= 0))"
+        }
+      ]
     },
     {
       "name": "tb_user_addresses",
@@ -1128,7 +3041,7 @@
     },
     {
       "name": "tb_users",
-      "engine": "InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "engine": "InnoDB AUTO_INCREMENT=16405 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
       "columns": [
         {
           "name": "ID",
@@ -1714,7 +3627,7 @@
       "checkConstraints": []
     },
     {
-      "name": "tbd_buyer_orders",
+      "name": "tbd_cancellation_items",
       "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
       "columns": [
         {
@@ -1734,7 +3647,7 @@
           "references": []
         },
         {
-          "name": "seller_ID",
+          "name": "cancellation_ID",
           "type": "int unsigned",
           "declaration": "int unsigned NOT NULL",
           "nullable": false,
@@ -1745,61 +3658,39 @@
           "generatedKind": null,
           "onUpdate": null,
           "keys": [
-            "INDEX seller_ID",
-            "FK tbd_buyer_orders_ibfk_1"
+            "UNIQUE uk_cancellation_order_item",
+            "FK fk_cancellation_items_cancellation"
           ],
           "references": [
-            "tb_users.ID"
+            "tb_order_cancellations.ID"
           ]
         },
         {
-          "name": "subtotal",
-          "type": "decimal(12,2)",
-          "declaration": "decimal(12,2) NOT NULL DEFAULT '0.00'",
+          "name": "order_item_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
           "nullable": false,
-          "default": "'0.00'",
+          "default": null,
           "autoIncrement": false,
           "generated": false,
           "generatedExpression": null,
           "generatedKind": null,
           "onUpdate": null,
-          "keys": [],
-          "references": []
+          "keys": [
+            "UNIQUE uk_cancellation_order_item",
+            "INDEX idx_cancellation_items_order_item",
+            "FK fk_cancellation_items_order_item"
+          ],
+          "references": [
+            "tbd_order_items.ID"
+          ]
         },
         {
-          "name": "shipping_cost",
-          "type": "decimal(12,2)",
-          "declaration": "decimal(12,2) NOT NULL DEFAULT '0.00'",
+          "name": "quantity",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
           "nullable": false,
-          "default": "'0.00'",
-          "autoIncrement": false,
-          "generated": false,
-          "generatedExpression": null,
-          "generatedKind": null,
-          "onUpdate": null,
-          "keys": [],
-          "references": []
-        },
-        {
-          "name": "fulfillment_status",
-          "type": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned')",
-          "declaration": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') NOT NULL DEFAULT 'Pending'",
-          "nullable": false,
-          "default": "'Pending'",
-          "autoIncrement": false,
-          "generated": false,
-          "generatedExpression": null,
-          "generatedKind": null,
-          "onUpdate": null,
-          "keys": [],
-          "references": []
-        },
-        {
-          "name": "status",
-          "type": "bit(1)",
-          "declaration": "bit(1) NOT NULL DEFAULT b'1'",
-          "nullable": false,
-          "default": "b'1'",
+          "default": null,
           "autoIncrement": false,
           "generated": false,
           "generatedExpression": null,
@@ -1821,20 +3712,6 @@
           "onUpdate": null,
           "keys": [],
           "references": []
-        },
-        {
-          "name": "last_update",
-          "type": "datetime",
-          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
-          "nullable": true,
-          "default": "NULL",
-          "autoIncrement": false,
-          "generated": false,
-          "generatedExpression": null,
-          "generatedKind": null,
-          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
-          "keys": [],
-          "references": []
         }
       ],
       "primaryKey": [
@@ -1842,20 +3719,41 @@
       ],
       "indexes": [
         {
-          "name": "seller_ID",
+          "name": "uk_cancellation_order_item",
           "columns": [
-            "seller_ID"
+            "cancellation_ID",
+            "order_item_ID"
+          ],
+          "unique": true
+        },
+        {
+          "name": "idx_cancellation_items_order_item",
+          "columns": [
+            "order_item_ID"
           ],
           "unique": false
         }
       ],
       "foreignKeys": [
         {
-          "name": "tbd_buyer_orders_ibfk_1",
+          "name": "fk_cancellation_items_cancellation",
           "columns": [
-            "seller_ID"
+            "cancellation_ID"
           ],
-          "target": "tb_users",
+          "target": "tb_order_cancellations",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_cancellation_items_order_item",
+          "columns": [
+            "order_item_ID"
+          ],
+          "target": "tbd_order_items",
           "targetColumns": [
             "ID"
           ],
@@ -1866,12 +3764,8 @@
       ],
       "checkConstraints": [
         {
-          "name": "tbd_buyer_orders_chk_1",
-          "expression": "((`subtotal` >= 0))"
-        },
-        {
-          "name": "tbd_buyer_orders_chk_2",
-          "expression": "((`shipping_cost` >= 0))"
+          "name": "chk_cancellation_items_quantity",
+          "expression": "((`quantity` > 0))"
         }
       ]
     },
@@ -2072,7 +3966,7 @@
             "FK fk_order_items_buyer_order"
           ],
           "references": [
-            "tbd_buyer_orders.ID"
+            "tb_orders.ID"
           ]
         },
         {
@@ -2091,27 +3985,24 @@
             "FK fk_order_items_product"
           ],
           "references": [
-            "tbd_products_users_providers.product_id"
+            "tb_products.ID"
           ]
         },
         {
           "name": "provider_ID",
           "type": "int unsigned",
-          "declaration": "int unsigned NOT NULL",
-          "nullable": false,
-          "default": null,
+          "declaration": "int unsigned DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
           "autoIncrement": false,
           "generated": false,
           "generatedExpression": null,
           "generatedKind": null,
           "onUpdate": null,
           "keys": [
-            "INDEX fk_order_items_provider",
-            "FK fk_order_items_provider"
+            "INDEX fk_order_items_provider"
           ],
-          "references": [
-            "tbd_products_users_providers.user_id"
-          ]
+          "references": []
         },
         {
           "name": "product_name",
@@ -2216,7 +4107,7 @@
           "columns": [
             "buyer_order_ID"
           ],
-          "target": "tbd_buyer_orders",
+          "target": "tb_orders",
           "targetColumns": [
             "ID"
           ],
@@ -2229,22 +4120,9 @@
           "columns": [
             "product_ID"
           ],
-          "target": "tbd_products_users_providers",
+          "target": "tb_products",
           "targetColumns": [
-            "product_id"
-          ],
-          "onDelete": "NO ACTION (implícito)",
-          "onUpdate": "NO ACTION (implícito)",
-          "selfReference": false
-        },
-        {
-          "name": "fk_order_items_provider",
-          "columns": [
-            "provider_ID"
-          ],
-          "target": "tbd_products_users_providers",
-          "targetColumns": [
-            "user_id"
+            "ID"
           ],
           "onDelete": "NO ACTION (implícito)",
           "onUpdate": "NO ACTION (implícito)",
@@ -2547,6 +4425,223 @@
         }
       ],
       "checkConstraints": []
+    },
+    {
+      "name": "tbd_return_items",
+      "engine": "InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL AUTO_INCREMENT",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": true,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "PK"
+          ],
+          "references": []
+        },
+        {
+          "name": "return_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_return_order_item",
+            "FK fk_return_items_return"
+          ],
+          "references": [
+            "tb_returns.ID"
+          ]
+        },
+        {
+          "name": "order_item_ID",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [
+            "UNIQUE uk_return_order_item",
+            "INDEX idx_return_items_order_item",
+            "FK fk_return_items_order_item"
+          ],
+          "references": [
+            "tbd_order_items.ID"
+          ]
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned",
+          "declaration": "int unsigned NOT NULL",
+          "nullable": false,
+          "default": null,
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "item_condition",
+          "type": "enum('Unopened','Unused','Used','Damaged','Defective','Other')",
+          "declaration": "enum('Unopened','Unused','Used','Damaged','Defective','Other') DEFAULT NULL",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "disposition",
+          "type": "enum('Pending','Restock','Repair','Dispose','SupplierReturn')",
+          "declaration": "enum('Pending','Restock','Repair','Dispose','SupplierReturn') NOT NULL DEFAULT 'Pending'",
+          "nullable": false,
+          "default": "'Pending'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "approved_refund_amount",
+          "type": "decimal(12,2)",
+          "declaration": "decimal(12,2) NOT NULL DEFAULT '0.00'",
+          "nullable": false,
+          "default": "'0.00'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "item_status",
+          "type": "enum('Requested','Approved','Rejected','Received','Refunded')",
+          "declaration": "enum('Requested','Approved','Rejected','Received','Refunded') NOT NULL DEFAULT 'Requested'",
+          "nullable": false,
+          "default": "'Requested'",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "declaration": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": null,
+          "keys": [],
+          "references": []
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "declaration": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP",
+          "nullable": true,
+          "default": "NULL",
+          "autoIncrement": false,
+          "generated": false,
+          "generatedExpression": null,
+          "generatedKind": null,
+          "onUpdate": "ON UPDATE CURRENT_TIMESTAMP",
+          "keys": [],
+          "references": []
+        }
+      ],
+      "primaryKey": [
+        "ID"
+      ],
+      "indexes": [
+        {
+          "name": "uk_return_order_item",
+          "columns": [
+            "return_ID",
+            "order_item_ID"
+          ],
+          "unique": true
+        },
+        {
+          "name": "idx_return_items_order_item",
+          "columns": [
+            "order_item_ID"
+          ],
+          "unique": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "fk_return_items_order_item",
+          "columns": [
+            "order_item_ID"
+          ],
+          "target": "tbd_order_items",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        },
+        {
+          "name": "fk_return_items_return",
+          "columns": [
+            "return_ID"
+          ],
+          "target": "tb_returns",
+          "targetColumns": [
+            "ID"
+          ],
+          "onDelete": "NO ACTION (implícito)",
+          "onUpdate": "NO ACTION (implícito)",
+          "selfReference": false
+        }
+      ],
+      "checkConstraints": [
+        {
+          "name": "chk_return_items_quantity",
+          "expression": "((`quantity` > 0))"
+        },
+        {
+          "name": "chk_return_items_refund_amount",
+          "expression": "((`approved_refund_amount` >= 0))"
+        }
+      ]
     },
     {
       "name": "tbd_user_payment_methods",
@@ -2911,17 +5006,28 @@
     }
   ],
   "views": [
+    "vw_analisis_usuarios_demografico",
     "vw_total_products_by_category",
     "vw_trazabilidad_address_components",
-    "vw_trazabilidad_buyer_orders",
+    "vw_trazabilidad_cancellation_items",
     "vw_trazabilidad_cart_items",
     "vw_trazabilidad_carts",
     "vw_trazabilidad_categorias",
+    "vw_trazabilidad_order_cancellations",
     "vw_trazabilidad_order_items",
+    "vw_trazabilidad_orders",
+    "vw_trazabilidad_payment_methods",
     "vw_trazabilidad_payment_methods_types",
+    "vw_trazabilidad_payment_transaction",
+    "vw_trazabilidad_payments",
+    "vw_trazabilidad_people",
     "vw_trazabilidad_productos",
     "vw_trazabilidad_products_categories",
     "vw_trazabilidad_products_users_providers",
+    "vw_trazabilidad_refunds",
+    "vw_trazabilidad_return_items",
+    "vw_trazabilidad_returns",
+    "vw_trazabilidad_shipments",
     "vw_trazabilidad_user_addresses",
     "vw_trazabilidad_user_payment_methods",
     "vw_trazabilidad_users_wishlist_products",
@@ -2931,9 +5037,36 @@
     "trg_after_insert_tb_carts",
     "trg_after_update_tb_carts",
     "trg_after_delete_tb_carts",
+    "trg_after_insert_tb_order_cancellations",
+    "trg_after_update_tb_order_cancellations",
+    "trg_after_delete_tb_order_cancellations",
+    "trg_after_insert_tb_orders",
+    "trg_after_update_tb_orders",
+    "trg_after_delete_tb_orders",
+    "trg_after_insert_tb_payment_methods",
+    "trg_after_update_tb_payment_methods",
+    "trg_after_delete_tb_payment_methods",
+    "trg_after_insert_tb_payment_transaction",
+    "trg_after_update_tb_payment_transaction",
+    "trg_after_delete_tb_payment_transaction",
+    "trg_after_insert_tb_payments",
+    "trg_after_update_tb_payments",
+    "trg_after_delete_tb_payments",
+    "trg_personal_data_after_insert",
+    "trg_personal_data_after_update",
+    "trg_personal_data_after_delete",
     "trg_after_insert_tb_products",
     "trg_after_update_tb_products",
     "trg_after_delete_tb_products",
+    "trg_after_insert_tb_refunds",
+    "trg_after_update_tb_refunds",
+    "trg_after_delete_tb_refunds",
+    "trg_after_insert_tb_returns",
+    "trg_after_update_tb_returns",
+    "trg_after_delete_tb_returns",
+    "trg_after_insert_tb_shipments",
+    "trg_after_update_tb_shipments",
+    "trg_after_delete_tb_shipments",
     "trg_after_insert_tb_user_addresses",
     "trg_after_update_tb_user_addresses",
     "trg_after_delete_tb_user_addresses",
@@ -2949,9 +5082,9 @@
     "trg_after_insert_tbd_address_components",
     "trg_after_update_tbd_address_components",
     "trg_after_delete_tbd_address_components",
-    "trg_after_insert_tbd_buyer_orders",
-    "trg_after_update_tbd_buyer_orders",
-    "trg_after_delete_tbd_buyer_orders",
+    "trg_after_insert_tbd_cancellation_items",
+    "trg_after_update_tbd_cancellation_items",
+    "trg_after_delete_tbd_cancellation_items",
     "trg_after_insert_tbd_cart_items",
     "trg_after_update_tbd_cart_items",
     "trg_after_delete_tbd_cart_items",
@@ -2964,6 +5097,9 @@
     "trg_after_insert_tbd_products_users_providers",
     "trg_after_update_tbd_products_users_providers",
     "trg_after_delete_tbd_products_users_providers",
+    "trg_after_insert_tbd_return_items",
+    "trg_after_update_tbd_return_items",
+    "trg_after_delete_tbd_return_items",
     "trg_after_insert_tbd_user_payment_methods",
     "trg_after_update_tbd_user_payment_methods",
     "trg_after_delete_tbd_user_payment_methods",
