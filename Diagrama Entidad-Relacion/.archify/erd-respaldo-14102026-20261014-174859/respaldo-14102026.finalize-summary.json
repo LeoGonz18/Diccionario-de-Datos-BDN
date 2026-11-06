@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\candidate.json",
+    "sha256": "a088210b2eb9dfdff209e5b2da4e4dd06cbac3fca43ce39234b515bc33d4cb4e",
+    "bytes": 31488
+  },
+  "artifact": {
+    "path": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+    "sha256": "ec6758b97f5e9d7de9423eb4146d5fd19654526917944f52df73912cc31bf442",
+    "bytes": 907355
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.finalize.json",
+    "summaryReceipt": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.1.0",
+    "availableVersion": "3.1.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-14T23:50:26.022Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3824,
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 4,
+      "routesOverSuggestedStretch": 3
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "rel_tb_orders_User_ID_tb_users",
+            "from": "tb_orders",
+            "to": "tb_users",
+            "label": "fk_user_2: User_ID → ID",
+            "collectionIndex": 1,
+            "artifactIndex": 2
+          },
+          "bends": 4,
+          "stretch": 1.393
+        },
+        {
+          "relationship": {
+            "id": "rel_tbd_cart_items_cart_ID_tb_carts",
+            "from": "tbd_cart_items",
+            "to": "tb_carts",
+            "label": "fk_cart_item_cart: cart_ID → ID",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "bends": 3,
+          "stretch": 1.026
+        },
+        {
+          "relationship": {
+            "id": "rel_tbd_products_categories_product_ID_tb_products",
+            "from": "tbd_products_categories",
+            "to": "tb_products",
+            "label": "fk_product: product_ID → ID",
+            "collectionIndex": 7,
+            "artifactIndex": 8
+          },
+          "bends": 4,
+          "stretch": 2.122,
+          "directCorridorBlockers": [
+            {
+              "id": "tbc_categories",
+              "label": "tbc_categories",
+              "box": [
+                659,
+                356,
+                360,
+                228
+              ]
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "id": "rel_tbd_products_users_providers_user_id_tb_users",
+            "from": "tbd_products_users_providers",
+            "to": "tb_users",
+            "label": "fk_user1: user_id → ID",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "bends": 4,
+          "stretch": 1.643,
+          "directCorridorBlockers": [
+            {
+              "id": "tb_carts",
+              "label": "tb_carts",
+              "box": [
+                32,
+                356,
+                360,
+                180
+              ]
+            },
+            {
+              "id": "tbd_users_wishlist_products",
+              "label": "tbd_users_wishlist_products",
+              "box": [
+                32,
+                648,
+                360,
+                180
+              ]
+            }
+          ]
+        }
+      ],
+      "truncated": false
+    },
+    "repair": "Advisory only: this mode places or routes these relationships itself. Report them; do not remove relationships or meaning to reduce crossings."
+  }
+}

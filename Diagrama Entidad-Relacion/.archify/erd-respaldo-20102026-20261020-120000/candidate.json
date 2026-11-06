@@ -1,0 +1,1201 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "Modelo de datos · respaldo db_test 20/10/2026",
+    "locale": "es",
+    "output": "modelo-db-test.html",
+    "quality_profile": "standard"
+  },
+  "layout": {
+    "mode": "grid",
+    "gapX": 70,
+    "gapY": 38,
+    "entityW": 340,
+    "rowH": 22
+  },
+  "entities": [
+    {
+      "id": "tb_carts",
+      "label": "tb_carts",
+      "tag": "Identidad",
+      "row": 1,
+      "col": 0,
+      "sublabel": "5 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tb_logs",
+      "label": "tb_logs",
+      "tag": "Auditoría",
+      "row": 0,
+      "col": 3,
+      "sublabel": "7 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "table_name",
+          "type": "varchar(100) NOT NULL"
+        },
+        {
+          "name": "operation",
+          "type": "enum('Create','Read','Update','Delete') NOT NULL"
+        },
+        {
+          "name": "db_users",
+          "type": "varchar(80) NOT NULL"
+        },
+        {
+          "name": "description",
+          "type": "text NOT NULL"
+        },
+        {
+          "name": "operation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "operation_status",
+          "type": "bit(1) DEFAULT b'1'"
+        }
+      ]
+    },
+    {
+      "id": "tb_orders",
+      "label": "tb_orders",
+      "tag": "Operaciones",
+      "row": 0,
+      "col": 2,
+      "sublabel": "9 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "key",
+          "type": "varchar(40) NOT NULL"
+        },
+        {
+          "name": "User_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "total_products",
+          "type": "int NOT NULL"
+        },
+        {
+          "name": "total_cost",
+          "type": "decimal(10,3) NOT NULL DEFAULT '0.000'"
+        },
+        {
+          "name": "status_string",
+          "type": "enum('Registered','Payed','Canceled','Delivered','Devolved','Attended','Sended') NOT NULL DEFAULT 'Registered'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL"
+        }
+      ]
+    },
+    {
+      "id": "tb_payment_methods",
+      "label": "tb_payment_methods",
+      "tag": "Operaciones",
+      "row": 2,
+      "col": 2,
+      "sublabel": "6 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(60) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "varchar(255) DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tb_payments",
+      "label": "tb_payments",
+      "tag": "Operaciones",
+      "row": 1,
+      "col": 2,
+      "sublabel": "11 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tb_orders.ID"
+        },
+        {
+          "name": "payment_method_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tb_payment_methods.ID"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(10,2) NOT NULL"
+        },
+        {
+          "name": "currency",
+          "type": "char(3) NOT NULL DEFAULT 'MXN'"
+        },
+        {
+          "name": "payment_status",
+          "type": "enum('Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded') NOT NULL DEFAULT 'Pending'"
+        },
+        {
+          "name": "provider",
+          "type": "varchar(60) DEFAULT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150) DEFAULT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "paid_date",
+          "type": "datetime DEFAULT NULL"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tb_products",
+      "label": "tb_products",
+      "tag": "Catálogo",
+      "row": 0,
+      "col": 1,
+      "sublabel": "9 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(250) NOT NULL"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "current_price",
+          "type": "decimal(10,2) NOT NULL DEFAULT '0.00'"
+        },
+        {
+          "name": "current_stock",
+          "type": "int unsigned NOT NULL DEFAULT '0'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tb_user_addresses",
+      "label": "tb_user_addresses",
+      "tag": "Identidad",
+      "row": 2,
+      "col": 0,
+      "sublabel": "12 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "bigint unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "address_label",
+          "type": "varchar(100) NOT NULL"
+        },
+        {
+          "name": "recipient_name",
+          "type": "varchar(150) DEFAULT NULL"
+        },
+        {
+          "name": "recipient_phone",
+          "type": "varchar(25) DEFAULT NULL"
+        },
+        {
+          "name": "delivery_instructions",
+          "type": "varchar(500) DEFAULT NULL"
+        },
+        {
+          "name": "latitude",
+          "type": "decimal(10,7) DEFAULT NULL"
+        },
+        {
+          "name": "longitude",
+          "type": "decimal(10,7) DEFAULT NULL"
+        },
+        {
+          "name": "is_default",
+          "type": "tinyint(1) NOT NULL DEFAULT '0'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tb_users",
+      "label": "tb_users",
+      "tag": "Identidad",
+      "row": 0,
+      "col": 0,
+      "sublabel": "8 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "email",
+          "type": "varchar(80) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "nickname",
+          "type": "varchar(100) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "password",
+          "type": "varchar(255) NOT NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_login",
+          "type": "datetime DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        }
+      ]
+    },
+    {
+      "id": "tbc_categories",
+      "label": "tbc_categories",
+      "tag": "Catálogo",
+      "row": 1,
+      "col": 1,
+      "sublabel": "7 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(120) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "sup_id_category",
+          "type": "int unsigned DEFAULT NULL",
+          "key": "fk",
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbc_payment_methods_types",
+      "label": "tbc_payment_methods_types",
+      "tag": "Operaciones",
+      "row": 3,
+      "col": 2,
+      "sublabel": "6 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "code",
+          "type": "varchar(30) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "text NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_address_components",
+      "label": "tbd_address_components",
+      "tag": "Identidad",
+      "row": 3,
+      "col": 0,
+      "sublabel": "8 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "bigint unsigned NOT NULL AUTO_INCREMENT",
+          "key": [
+            "pk",
+            "uk"
+          ]
+        },
+        {
+          "name": "address_ID",
+          "type": "bigint unsigned NOT NULL",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_user_addresses.ID"
+        },
+        {
+          "name": "value",
+          "type": "varchar(255) NOT NULL"
+        },
+        {
+          "name": "component_type",
+          "type": "varchar(50) NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "address_sup_ID",
+          "type": "bigint unsigned DEFAULT NULL",
+          "key": "fk",
+          "references": "tbd_address_components.ID"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_buyer_orders",
+      "label": "tbd_buyer_orders",
+      "tag": "Operaciones",
+      "row": 4,
+      "col": 2,
+      "sublabel": "8 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "seller_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2) NOT NULL DEFAULT '0.00'"
+        },
+        {
+          "name": "shipping_cost",
+          "type": "decimal(12,2) NOT NULL DEFAULT '0.00'"
+        },
+        {
+          "name": "fulfillment_status",
+          "type": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') NOT NULL DEFAULT 'Pending'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_cart_items",
+      "label": "tbd_cart_items",
+      "tag": "Operaciones",
+      "row": 5,
+      "col": 2,
+      "sublabel": "5 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "cart_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_carts.ID"
+        },
+        {
+          "name": "provider_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbd_products_users_providers.user_id"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbd_products_users_providers.product_id"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned NOT NULL DEFAULT '1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_order_items",
+      "label": "tbd_order_items",
+      "tag": "Operaciones",
+      "row": 6,
+      "col": 2,
+      "sublabel": "9 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tbd_buyer_orders.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tbd_products_users_providers.product_id"
+        },
+        {
+          "name": "provider_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tbd_products_users_providers.user_id"
+        },
+        {
+          "name": "product_name",
+          "type": "varchar(255) NOT NULL"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned NOT NULL"
+        },
+        {
+          "name": "unit_price",
+          "type": "decimal(12,2) NOT NULL"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2) GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_categories",
+      "label": "tbd_products_categories",
+      "tag": "Catálogo",
+      "row": 2,
+      "col": 1,
+      "sublabel": "5 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "category_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_users_providers",
+      "label": "tbd_products_users_providers",
+      "tag": "Catálogo",
+      "row": 3,
+      "col": 1,
+      "sublabel": "7 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "user_id",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_id",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "type_ownership",
+          "type": "enum('Owner','Reseller','Distributor') DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "avalaible_date",
+          "type": "datetime NOT NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_user_payment_methods",
+      "label": "tbd_user_payment_methods",
+      "tag": "Identidad",
+      "row": 4,
+      "col": 0,
+      "sublabel": "11 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "bigint unsigned NOT NULL AUTO_INCREMENT",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "payment_method_type_ID",
+          "type": "int unsigned NOT NULL",
+          "key": "fk",
+          "references": "tbc_payment_methods_types.ID"
+        },
+        {
+          "name": "provider",
+          "type": "varchar(60) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "provider_method_ref",
+          "type": "varchar(255) NOT NULL",
+          "key": "uk"
+        },
+        {
+          "name": "label",
+          "type": "varchar(100) DEFAULT NULL"
+        },
+        {
+          "name": "last_four",
+          "type": "char(4) DEFAULT NULL"
+        },
+        {
+          "name": "is_default",
+          "type": "tinyint(1) NOT NULL DEFAULT '0'"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "id": "tbd_users_wishlist_products",
+      "label": "tbd_users_wishlist_products",
+      "tag": "Identidad",
+      "row": 5,
+      "col": 0,
+      "sublabel": "5 columnas · InnoDB",
+      "attributes": [
+        {
+          "name": "user_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned NOT NULL",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "fk_cart_user",
+      "from": "tb_carts",
+      "to": "tb_users",
+      "label": "fk_cart_user · user_ID → ID",
+      "fromCardinality": "one",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_user_2",
+      "from": "tb_orders",
+      "to": "tb_users",
+      "label": "fk_user_2 · User_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_payment_method",
+      "from": "tb_payments",
+      "to": "tb_payment_methods",
+      "label": "fk_payment_method · payment_method_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_payment_order",
+      "from": "tb_payments",
+      "to": "tb_orders",
+      "label": "fk_payment_order · order_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_addresses_users",
+      "from": "tb_user_addresses",
+      "to": "tb_users",
+      "label": "fk_addresses_users · user_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_superior_category",
+      "from": "tbc_categories",
+      "to": "tbc_categories",
+      "label": "fk_superior_category · sup_id_category → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": true,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_component_address",
+      "from": "tbd_address_components",
+      "to": "tb_user_addresses",
+      "label": "fk_component_address · address_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_component_parent",
+      "from": "tbd_address_components",
+      "to": "tbd_address_components",
+      "label": "fk_component_parent · address_ID, address_sup_ID → address_ID, ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": true,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "tbd_buyer_orders_ibfk_1",
+      "from": "tbd_buyer_orders",
+      "to": "tb_users",
+      "label": "tbd_buyer_orders_ibfk_1 · seller_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "tbd_cart_items_ibfk_1",
+      "from": "tbd_cart_items",
+      "to": "tb_carts",
+      "label": "tbd_cart_items_ibfk_1 · cart_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "tbd_cart_items_ibfk_2",
+      "from": "tbd_cart_items",
+      "to": "tbd_products_users_providers",
+      "label": "tbd_cart_items_ibfk_2 · provider_ID → user_id",
+      "fromCardinality": "many",
+      "toCardinality": "many",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "tbd_cart_items_ibfk_3",
+      "from": "tbd_cart_items",
+      "to": "tbd_products_users_providers",
+      "label": "tbd_cart_items_ibfk_3 · product_ID → product_id",
+      "fromCardinality": "many",
+      "toCardinality": "many",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "fk_order_items_buyer_order",
+      "from": "tbd_order_items",
+      "to": "tbd_buyer_orders",
+      "label": "fk_order_items_buyer_order · buyer_order_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_order_items_product",
+      "from": "tbd_order_items",
+      "to": "tbd_products_users_providers",
+      "label": "fk_order_items_product · product_ID → product_id",
+      "fromCardinality": "many",
+      "toCardinality": "many",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_order_items_provider",
+      "from": "tbd_order_items",
+      "to": "tbd_products_users_providers",
+      "label": "fk_order_items_provider · provider_ID → user_id",
+      "fromCardinality": "many",
+      "toCardinality": "many",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_category",
+      "from": "tbd_products_categories",
+      "to": "tbc_categories",
+      "label": "fk_category · category_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "fk_product",
+      "from": "tbd_products_categories",
+      "to": "tb_products",
+      "label": "fk_product · product_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "fk_products2",
+      "from": "tbd_products_users_providers",
+      "to": "tb_products",
+      "label": "fk_products2 · product_id → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "fk_user1",
+      "from": "tbd_products_users_providers",
+      "to": "tb_users",
+      "label": "fk_user1 · user_id → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "tbd_user_payment_methods_ibfk_1",
+      "from": "tbd_user_payment_methods",
+      "to": "tb_users",
+      "label": "tbd_user_payment_methods_ibfk_1 · user_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "tbd_user_payment_methods_ibfk_2",
+      "from": "tbd_user_payment_methods",
+      "to": "tbc_payment_methods_types",
+      "label": "tbd_user_payment_methods_ibfk_2 · payment_method_type_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": false
+    },
+    {
+      "id": "fk_wishlist_product",
+      "from": "tbd_users_wishlist_products",
+      "to": "tb_products",
+      "label": "fk_wishlist_product · product_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "fk_wishlist_user",
+      "from": "tbd_users_wishlist_products",
+      "to": "tb_users",
+      "label": "fk_wishlist_user · user_ID → ID",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "toOptional": false,
+      "identifying": true
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Relación autorreferente · tbc_categories",
+      "items": [
+        "fk_superior_category: (sup_id_category) referencia (ID); DELETE NO ACTION (implícito); UPDATE NO ACTION (implícito)."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Relación autorreferente · tbd_address_components",
+      "items": [
+        "fk_component_parent: (address_ID, address_sup_ID) referencia (address_ID, ID); DELETE RESTRICT; UPDATE NO ACTION (implícito)."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_cart_items",
+      "items": [
+        "La FK tbd_cart_items_ibfk_1 comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_cart_items",
+      "items": [
+        "La FK tbd_cart_items_ibfk_2 comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_cart_items",
+      "items": [
+        "La FK tbd_cart_items_ibfk_3 comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_products_categories",
+      "items": [
+        "La FK fk_category comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_products_categories",
+      "items": [
+        "La FK fk_product comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_products_users_providers",
+      "items": [
+        "La FK fk_products2 comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_products_users_providers",
+      "items": [
+        "La FK fk_user1 comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_users_wishlist_products",
+      "items": [
+        "La FK fk_wishlist_product comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Revisar unicidad · tbd_users_wishlist_products",
+      "items": [
+        "La FK fk_wishlist_user comparte parte de la PK compuesta. La cardinalidad de origen depende de la combinación completa de columnas."
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Procedencia y alcance",
+      "items": [
+        "Esquema leído de Practica 03/backups/Respaldo_20102026.sql sin ejecutar instrucciones.",
+        "DDL declara 18 tablas, 138 columnas y 23 claves foráneas.",
+        "El respaldo contiene 15 vistas y 42 triggers; no se detectaron procedimientos, funciones ni eventos.",
+        "Las relaciones dibujadas son FOREIGN KEY declaradas. Los nombres funcionales y el significado de negocio requieren confirmación cuando no se desprenden directamente del SQL."
+      ]
+    }
+  ]
+}

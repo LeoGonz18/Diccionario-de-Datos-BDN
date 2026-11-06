@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\candidate.json",
+    "sha256": "c0cb005d36306f0360847a7e18698248690b780fd270f01ba6a6b7227225301e",
+    "bytes": 51020
+  },
+  "artifact": {
+    "path": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.html",
+    "sha256": "42a119d89393fcfb1a1de71daabb63e79bd6375b5e6b3ac5048b9ae9993eedb8",
+    "bytes": 1047158
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows 3 viewport/theme combinations.",
+      "subject": {},
+      "evidence": {
+        "overflows": [
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1440,
+              "scrollHeight": 2742,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 2600,
+                "cardsPx": 0,
+                "viewBoxHeight": 5040
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          },
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1600,
+              "scrollHeight": 3118,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 2909,
+                "cardsPx": 0,
+                "viewBoxHeight": 5040
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          },
+          {
+            "detection": "browser-measurement",
+            "subject": {
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "dark"
+              }
+            },
+            "evidence": {
+              "scrollWidth": 1440,
+              "scrollHeight": 2742,
+              "overflowX": false,
+              "overflowY": true,
+              "overflowDisposition": "unexpected-overflow",
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 2600,
+                "cardsPx": 0,
+                "viewBoxHeight": 5040
+              },
+              "pageCompositionMeasurement": "CSS pixels at this viewport; body padding, header, diagram chrome, SVG and cards stack vertically and sum to scrollHeight"
+            }
+          }
+        ]
+      },
+      "supportedFixes": [
+        "contain the rendered layout within 1440x900 (smallest reported viewport), then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1440x900.",
+      "subject": {
+        "artifact": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_carts"
+        },
+        "minimumProjectedNodeTextPx": 4.643158298198544,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1600x1000.",
+      "subject": {
+        "artifact": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.html",
+        "viewport": {
+          "width": 1600,
+          "height": 1000,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_carts"
+        },
+        "minimumProjectedNodeTextPx": 5.1950939057109995,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 3,
+    "shown": 3,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.finalize.json",
+    "summaryReceipt": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.finalize-summary.json",
+    "browserCheckReceipt": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-29T17:12:53.727Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 20756,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

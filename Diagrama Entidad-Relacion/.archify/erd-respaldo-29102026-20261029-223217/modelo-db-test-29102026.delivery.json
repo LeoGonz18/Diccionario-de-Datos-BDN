@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cfba0b75-27fd-4b69-a03a-42b2ad82201e",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\candidate.json",
+  "output": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-29102026-20261029-223217\\modelo-db-test-29102026.html",
+  "specification": {
+    "sha256": "c0cb005d36306f0360847a7e18698248690b780fd270f01ba6a6b7227225301e",
+    "bytes": 51020
+  },
+  "artifact": {
+    "sha256": "42a119d89393fcfb1a1de71daabb63e79bd6375b5e6b3ac5048b9ae9993eedb8",
+    "bytes": 1047158
+  }
+}

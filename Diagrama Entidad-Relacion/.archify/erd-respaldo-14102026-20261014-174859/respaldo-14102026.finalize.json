@@ -1,0 +1,1326 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "erd",
+  "quality": "standard",
+  "startedAt": "2026-10-14T23:51:13.930Z",
+  "specification": {
+    "path": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\candidate.json",
+    "sha256": "a088210b2eb9dfdff209e5b2da4e4dd06cbac3fca43ce39234b515bc33d4cb4e",
+    "bytes": 31488
+  },
+  "artifact": {
+    "path": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+    "sha256": "ec6758b97f5e9d7de9423eb4146d5fd19654526917944f52df73912cc31bf442",
+    "bytes": 907355
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\ti_la\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "erd",
+        "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\candidate.json",
+        "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "--quality",
+        "standard",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "a088210b2eb9dfdff209e5b2da4e4dd06cbac3fca43ce39234b515bc33d4cb4e",
+          "bytes": 31488
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 3,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "fk_category: category_ID → ID",
+              "labelRelationship": {
+                "id": "rel_tbd_products_categories_category_ID_tbc_categories",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "fk_category: category_ID → ID",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "rel_tbd_products_categories_product_ID_tb_products",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "fk_product: product_ID → ID",
+                "collectionIndex": 7,
+                "artifactIndex": 8
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 741.1,
+                "y": 628,
+                "width": 171.8,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                851,
+                648
+              ],
+              "to": [
+                851,
+                597
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "rel_tbd_cart_items_cart_ID_tb_carts",
+                "from": "tbd_cart_items",
+                "to": "tb_carts",
+                "label": "fk_cart_item_cart: cart_ID → ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "rel_tbd_users_wishlist_products_user_ID_tb_users",
+                "from": "tbd_users_wishlist_products",
+                "to": "tb_users",
+                "label": "fk_wishlist_user: user_ID → ID",
+                "collectionIndex": 11,
+                "artifactIndex": 12
+              },
+              "point": [
+                416,
+                332
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_carts",
+              "owner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 930,
+              "budgetBasis": "legacy-930",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "legacy",
+              "viewBoxWidth": 1899,
+              "scale": 0.48973143759873616,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 4.407582938388625,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 534,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\ti_la\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "erd",
+        "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\candidate.json",
+        "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "--quality",
+        "standard",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "7b46eba0-aa21-4d3f-91e5-7b0f76b39e1e",
+        "ok": true,
+        "command": "deliver",
+        "type": "erd",
+        "input": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\candidate.json",
+        "output": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "specification": {
+          "sha256": "a088210b2eb9dfdff209e5b2da4e4dd06cbac3fca43ce39234b515bc33d4cb4e",
+          "bytes": 31488
+        },
+        "artifact": {
+          "sha256": "ec6758b97f5e9d7de9423eb4146d5fd19654526917944f52df73912cc31bf442",
+          "bytes": 907355
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 3,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "fk_category: category_ID → ID",
+              "labelRelationship": {
+                "id": "rel_tbd_products_categories_category_ID_tbc_categories",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "fk_category: category_ID → ID",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "rel_tbd_products_categories_product_ID_tb_products",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "fk_product: product_ID → ID",
+                "collectionIndex": 7,
+                "artifactIndex": 8
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 741.1,
+                "y": 628,
+                "width": 171.8,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                851,
+                648
+              ],
+              "to": [
+                851,
+                597
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "rel_tbd_cart_items_cart_ID_tb_carts",
+                "from": "tbd_cart_items",
+                "to": "tb_carts",
+                "label": "fk_cart_item_cart: cart_ID → ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "rel_tbd_users_wishlist_products_user_ID_tb_users",
+                "from": "tbd_users_wishlist_products",
+                "to": "tb_users",
+                "label": "fk_wishlist_user: user_ID → ID",
+                "collectionIndex": 11,
+                "artifactIndex": 12
+              },
+              "point": [
+                416,
+                332
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_carts",
+              "owner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 930,
+              "budgetBasis": "legacy-930",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "legacy",
+              "viewBoxWidth": 1899,
+              "scale": 0.48973143759873616,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 4.407582938388625,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 177,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\ti_la\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "check",
+        "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "artifact": {
+          "sha256": "ec6758b97f5e9d7de9423eb4146d5fd19654526917944f52df73912cc31bf442",
+          "bytes": 907355
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": [
+              "[composition/label-route-clearance] standard label \"fk_category: category_ID → ID\" on relationship id \"rel_tbd_products_categories_category_ID_tbc_categories\" (\"tbd_products_categories\" -> \"tbc_categories\") is 0px from relationship id \"rel_tbd_products_categories_product_ID_tb_products\" (\"tbd_products_categories\" -> \"tb_products\") segment 0 [851, 648] -> [851, 597] with 14px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel."
+            ]
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": [
+              "[composition/proper-crossing] standard relationship id \"rel_tbd_cart_items_cart_ID_tb_carts\" (\"tbd_cart_items\" -> \"tb_carts\") crosses relationship id \"rel_tbd_users_wishlist_products_user_ID_tb_users\" (\"tbd_users_wishlist_products\" -> \"tb_users\") at [416, 332]"
+            ]
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "standard",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 3
+          },
+          "metrics": {
+            "properCrossings": 1,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 1,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 0,
+            "desktopReadabilityIssues": 1,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 4.407582938388625,
+            "maxBends": 4,
+            "routesOverSuggestedBends": 4,
+            "maxStretch": 2.122,
+            "routesOverSuggestedStretch": 3,
+            "minSegmentPx": 16,
+            "minInteriorSegmentPx": 24,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "rel_tb_orders_User_ID_tb_users",
+                  "from": "tb_orders",
+                  "to": "tb_users",
+                  "label": "fk_user_2: User_ID → ID",
+                  "collectionIndex": 1,
+                  "artifactIndex": 2
+                },
+                "bends": 4,
+                "stretch": 1.393
+              },
+              {
+                "relationship": {
+                  "id": "rel_tbd_cart_items_cart_ID_tb_carts",
+                  "from": "tbd_cart_items",
+                  "to": "tb_carts",
+                  "label": "fk_cart_item_cart: cart_ID → ID",
+                  "collectionIndex": 4,
+                  "artifactIndex": 5
+                },
+                "bends": 3,
+                "stretch": 1.026
+              },
+              {
+                "relationship": {
+                  "id": "rel_tbd_products_categories_product_ID_tb_products",
+                  "from": "tbd_products_categories",
+                  "to": "tb_products",
+                  "label": "fk_product: product_ID → ID",
+                  "collectionIndex": 7,
+                  "artifactIndex": 8
+                },
+                "bends": 4,
+                "stretch": 2.122,
+                "directCorridorBlockers": [
+                  {
+                    "id": "tbc_categories",
+                    "label": "tbc_categories",
+                    "box": [
+                      659,
+                      356,
+                      360,
+                      228
+                    ]
+                  }
+                ]
+              },
+              {
+                "relationship": {
+                  "id": "rel_tbd_products_users_providers_user_id_tb_users",
+                  "from": "tbd_products_users_providers",
+                  "to": "tb_users",
+                  "label": "fk_user1: user_id → ID",
+                  "collectionIndex": 9,
+                  "artifactIndex": 10
+                },
+                "bends": 4,
+                "stretch": 1.643,
+                "directCorridorBlockers": [
+                  {
+                    "id": "tb_carts",
+                    "label": "tb_carts",
+                    "box": [
+                      32,
+                      356,
+                      360,
+                      180
+                    ]
+                  },
+                  {
+                    "id": "tbd_users_wishlist_products",
+                    "label": "tbd_users_wishlist_products",
+                    "box": [
+                      32,
+                      648,
+                      360,
+                      180
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": false,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "legacy-930",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 930,
+            "actualBudgetPx": 930,
+            "limit": "legacy",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": false,
+            "hardFloorPx": 6,
+            "hardFloorMet": false,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "tb_carts"
+            },
+            "minimumSourceTextPx": 9,
+            "minimumProjectedTextPx": 4.407582938388625,
+            "semanticTextCount": 243
+          },
+          "issues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "fk_category: category_ID → ID",
+              "labelRelationship": {
+                "id": "rel_tbd_products_categories_category_ID_tbc_categories",
+                "from": "tbd_products_categories",
+                "to": "tbc_categories",
+                "label": "fk_category: category_ID → ID",
+                "collectionIndex": 6,
+                "artifactIndex": 7
+              },
+              "otherRelationship": {
+                "id": "rel_tbd_products_categories_product_ID_tb_products",
+                "from": "tbd_products_categories",
+                "to": "tb_products",
+                "label": "fk_product: product_ID → ID",
+                "collectionIndex": 7,
+                "artifactIndex": 8
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 741.1,
+                "y": 628,
+                "width": 171.8,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                851,
+                648
+              ],
+              "to": [
+                851,
+                597
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/proper-crossing",
+              "relationship": {
+                "id": "rel_tbd_cart_items_cart_ID_tb_carts",
+                "from": "tbd_cart_items",
+                "to": "tb_carts",
+                "label": "fk_cart_item_cart: cart_ID → ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "rel_tbd_users_wishlist_products_user_ID_tb_users",
+                "from": "tbd_users_wishlist_products",
+                "to": "tb_users",
+                "label": "fk_wishlist_user: user_ID → ID",
+                "collectionIndex": 11,
+                "artifactIndex": 12
+              },
+              "point": [
+                416,
+                332
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_carts",
+              "owner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 930,
+              "budgetBasis": "legacy-930",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "legacy",
+              "viewBoxWidth": 1899,
+              "scale": 0.48973143759873616,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 4.407582938388625,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "7b46eba0-aa21-4d3f-91e5-7b0f76b39e1e"
+      }
+    },
+    "browser-check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 2507,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\ti_la\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "browser-check",
+        "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "--json",
+        "--require-provenance"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "pass",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "7b46eba0-aa21-4d3f-91e5-7b0f76b39e1e",
+        "artifact": {
+          "path": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+          "sha256": "ec6758b97f5e9d7de9423eb4146d5fd19654526917944f52df73912cc31bf442",
+          "bytes": 907355
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        "diagnostics": [],
+        "containment": {
+          "status": "pass",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1184,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1042,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 6.379146919431279,
+              "minimumProjectedNonEdgeTextPx": 6.379146919431279,
+              "minimumProjectedEdgeTextPx": 6.379146919431279,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1374,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1166,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.137440758293839,
+              "minimumProjectedNonEdgeTextPx": 7.137440758293839,
+              "minimumProjectedEdgeTextPx": 7.137440758293839,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1434,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1613,
+              "diagramWidth": 1583,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1225,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.502369668246446,
+              "minimumProjectedNonEdgeTextPx": 7.502369668246446,
+              "minimumProjectedEdgeTextPx": 7.502369668246446,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1452,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1633,
+              "diagramWidth": 1583,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1225,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.502369668246446,
+              "minimumProjectedNonEdgeTextPx": 7.502369668246446,
+              "minimumProjectedEdgeTextPx": 7.502369668246446,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "themeStates": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            }
+          ]
+        },
+        "readability": {
+          "status": "pass",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1184,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1042,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 6.379146919431279,
+              "minimumProjectedNonEdgeTextPx": 6.379146919431279,
+              "minimumProjectedEdgeTextPx": 6.379146919431279,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1374,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1166,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.137440758293839,
+              "minimumProjectedNonEdgeTextPx": 7.137440758293839,
+              "minimumProjectedEdgeTextPx": 7.137440758293839,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1434,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1613,
+              "diagramWidth": 1583,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1225,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.502369668246446,
+              "minimumProjectedNonEdgeTextPx": 7.502369668246446,
+              "minimumProjectedEdgeTextPx": 7.502369668246446,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1452,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1633,
+              "diagramWidth": 1583,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1225,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.502369668246446,
+              "minimumProjectedNonEdgeTextPx": 7.502369668246446,
+              "minimumProjectedEdgeTextPx": 7.502369668246446,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "viewerChrome": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 1184,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 1042,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 6.379146919431279,
+              "minimumProjectedNonEdgeTextPx": 6.379146919431279,
+              "minimumProjectedEdgeTextPx": 6.379146919431279,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1374,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1166,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.137440758293839,
+              "minimumProjectedNonEdgeTextPx": 7.137440758293839,
+              "minimumProjectedEdgeTextPx": 7.137440758293839,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1434,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1613,
+              "diagramWidth": 1583,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 1225,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.502369668246446,
+              "minimumProjectedNonEdgeTextPx": 7.502369668246446,
+              "minimumProjectedEdgeTextPx": 7.502369668246446,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1452,
+              "overflowX": false,
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
+              "readerLayout": "adaptive",
+              "readerOverflow": "authored",
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1633,
+              "diagramWidth": 1583,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1225,
+                "cardsPx": 0,
+                "viewBoxHeight": 1470
+              },
+              "viewBoxWidth": 1899,
+              "minimumProjectedNodeTextPx": 7.502369668246446,
+              "minimumProjectedNonEdgeTextPx": 7.502369668246446,
+              "minimumProjectedEdgeTextPx": 7.502369668246446,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_carts"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "receipt": "respaldo-14102026.browser-check.json",
+          "files": []
+        }
+      }
+    }
+  },
+  "diagnostics": [],
+  "evidence": {
+    "receipt": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.finalize.json",
+    "summaryReceipt": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "finishedAt": "2026-10-14T23:51:17.754Z",
+  "durationMs": 3824,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.1.0",
+    "availableVersion": "3.1.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-14T23:50:26.022Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

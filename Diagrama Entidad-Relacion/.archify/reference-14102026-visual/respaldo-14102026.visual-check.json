@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "visual-check",
+  "evidenceKind": "automated-browser",
+  "status": "fail",
+  "visualReview": "pending",
+  "provenance": "invalid",
+  "artifact": {
+    "path": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+    "sha256": "beee4c9835f81be09f46ef377a5cf8ab5def836f469c22f071ea399dccf095ac",
+    "bytes": 923263
+  },
+  "error": "Delivery provenance could not determine whether its recorded output identifies the inspected artifact.",
+  "diagnostics": [
+    {
+      "code": "delivery/provenance-output-indeterminate",
+      "severity": "error",
+      "message": "Delivery provenance could not determine whether its recorded output identifies the inspected artifact.",
+      "subject": {
+        "artifact": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+        "provenance": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.delivery.json",
+        "recordedOutput": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html"
+      },
+      "evidence": {
+        "pathIdentity": {
+          "code": "entry-missing",
+          "operation": "same-entry",
+          "missing": [
+            "left"
+          ]
+        }
+      },
+      "supportedFixes": [
+        "restore access to both the artifact and its recorded output path, then rerun deliver successfully"
+      ]
+    }
+  ],
+  "containment": {
+    "status": "fail",
+    "policy": "fit-or-reader-declared-readable-vertical-scroll",
+    "viewports": []
+  },
+  "captures": {
+    "status": "fail",
+    "screenshots": [],
+    "contactSheet": null
+  },
+  "sidecars": {
+    "directory": "C:\\7mo Cuatri ING\\Optativa I Base de Datos en la Nube\\Practicas_BDN_240463\\Diagrama Entidad-Relacion\\.archify\\reference-14102026-visual",
+    "receipt": "respaldo-14102026.visual-check.json",
+    "contactSheet": "respaldo-14102026.visual-check.html",
+    "files": []
+  }
+}

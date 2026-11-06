@@ -1,0 +1,1035 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "Modelo EER · respaldo db_test 14/10/2026",
+    "locale": "es",
+    "output": ".archify/erd-respaldo-14102026-20261014-174859/respaldo-14102026.html",
+    "quality_profile": "standard",
+    "views": [
+      {
+        "id": "commerce",
+        "label": "Compras y pagos",
+        "focus": [
+          "tb_carts",
+          "tb_orders",
+          "tb_payments",
+          "tb_payment_methods",
+          "tbd_cart_items",
+          "tbd_order_items"
+        ],
+        "note": "Carritos, pedidos y pagos; también señala ofertas ausentes."
+      },
+      {
+        "id": "catalog",
+        "label": "Catálogo",
+        "focus": [
+          "tb_products",
+          "tbc_categories",
+          "tbd_products_categories",
+          "tbd_products_users_providers"
+        ],
+        "note": "Productos, categorías y sus entidades puente."
+      },
+      {
+        "id": "identity",
+        "label": "Usuarios",
+        "focus": [
+          "tb_users",
+          "tb_carts",
+          "tbd_users_wishlist_products"
+        ],
+        "note": "Identidades y asociaciones vinculadas a usuarios."
+      },
+      {
+        "id": "audit",
+        "label": "Auditoría",
+        "focus": [
+          "tb_logs"
+        ],
+        "note": "Registros de actividad insertados en el dump."
+      }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "gapX": 68,
+    "gapY": 40,
+    "entityW": 360,
+    "headerH": 54,
+    "rowH": 24
+  },
+  "entities": [
+    {
+      "id": "tb_carts",
+      "label": "tb_carts",
+      "tag": "Usuarios",
+      "row": 1,
+      "col": 0,
+      "sublabel": "0 registros INSERT · 5 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned · NN",
+          "key": [
+            "fk",
+            "uk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL"
+        }
+      ]
+    },
+    {
+      "id": "tb_logs",
+      "label": "tb_logs",
+      "tag": "Auditoría",
+      "row": 0,
+      "col": 3,
+      "sublabel": "31 739 registros INSERT · 7 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int · NN",
+          "key": "pk"
+        },
+        {
+          "name": "table_name",
+          "type": "varchar(100) · NN"
+        },
+        {
+          "name": "operation",
+          "type": "enum(4 values) · NN"
+        },
+        {
+          "name": "db_users",
+          "type": "varchar(80) · NN"
+        },
+        {
+          "name": "description",
+          "type": "text · NN"
+        },
+        {
+          "name": "operation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "operation_status",
+          "type": "bit(1) · NULL"
+        }
+      ]
+    },
+    {
+      "id": "tb_orders",
+      "label": "tb_orders",
+      "tag": "Compras y pagos",
+      "row": 0,
+      "col": 2,
+      "sublabel": "0 registros INSERT · 9 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "key",
+          "type": "varchar(40) · NN"
+        },
+        {
+          "name": "User_ID",
+          "type": "int unsigned · NN",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "total_products",
+          "type": "int · NN"
+        },
+        {
+          "name": "total_cost",
+          "type": "decimal(10,3) · NN"
+        },
+        {
+          "name": "status_string",
+          "type": "enum(7 values) · NN"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL"
+        }
+      ]
+    },
+    {
+      "id": "tb_payment_methods",
+      "label": "tb_payment_methods",
+      "tag": "Compras y pagos",
+      "row": 2,
+      "col": 2,
+      "sublabel": "4 registros INSERT · 6 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(60) · NN",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "varchar(255) · NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL"
+        }
+      ]
+    },
+    {
+      "id": "tb_payments",
+      "label": "tb_payments",
+      "tag": "Compras y pagos",
+      "row": 3,
+      "col": 2,
+      "sublabel": "0 registros INSERT · 11 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned · NN",
+          "key": "fk",
+          "references": "tb_orders.ID"
+        },
+        {
+          "name": "payment_method_ID",
+          "type": "int unsigned · NN",
+          "key": "fk",
+          "references": "tb_payment_methods.ID"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(10,2) · NN"
+        },
+        {
+          "name": "currency",
+          "type": "char(3) · NN"
+        },
+        {
+          "name": "payment_status",
+          "type": "enum(6 values) · NN"
+        },
+        {
+          "name": "provider",
+          "type": "varchar(60) · NULL"
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150) · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "paid_date",
+          "type": "datetime · NULL"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL"
+        }
+      ]
+    },
+    {
+      "id": "tb_products",
+      "label": "tb_products",
+      "tag": "Catálogo",
+      "row": 0,
+      "col": 1,
+      "sublabel": "15 007 registros INSERT · 9 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50) · NN",
+          "key": "uk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(250) · NN"
+        },
+        {
+          "name": "description",
+          "type": "text · NULL"
+        },
+        {
+          "name": "current_price",
+          "type": "decimal(10,2) · NN"
+        },
+        {
+          "name": "current_stock",
+          "type": "int unsigned · NN"
+        },
+        {
+          "name": "status",
+          "type": "varchar(50) · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NN"
+        }
+      ]
+    },
+    {
+      "id": "tb_users",
+      "label": "tb_users",
+      "tag": "Usuarios",
+      "row": 0,
+      "col": 0,
+      "sublabel": "7 registros INSERT · 8 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "email",
+          "type": "varchar(80) · NN",
+          "key": "uk"
+        },
+        {
+          "name": "nickname",
+          "type": "varchar(100) · NN",
+          "key": "uk"
+        },
+        {
+          "name": "password",
+          "type": "varchar(255) · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NULL"
+        },
+        {
+          "name": "last_login",
+          "type": "datetime · NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NN"
+        }
+      ]
+    },
+    {
+      "id": "tbc_categories",
+      "label": "tbc_categories",
+      "tag": "Catálogo",
+      "row": 1,
+      "col": 1,
+      "sublabel": "100 registros INSERT · 7 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(120) · NN",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "text · NULL"
+        },
+        {
+          "name": "sup_id_category",
+          "type": "int unsigned · NULL",
+          "key": "fk",
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NN"
+        }
+      ]
+    },
+    {
+      "id": "tbd_cart_items",
+      "label": "tbd_cart_items",
+      "tag": "Compras y pagos",
+      "row": 4,
+      "col": 2,
+      "sublabel": "0 registros INSERT · 4 columnas",
+      "attributes": [
+        {
+          "name": "cart_ID",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_carts.ID"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned · NN · FK ext",
+          "key": "pk"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        }
+      ]
+    },
+    {
+      "id": "tbd_order_items",
+      "label": "tbd_order_items",
+      "tag": "Compras y pagos",
+      "row": 1,
+      "col": 2,
+      "sublabel": "0 registros INSERT · 8 columnas",
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int unsigned · NN",
+          "key": "pk"
+        },
+        {
+          "name": "order_ID",
+          "type": "int unsigned · NN",
+          "key": "fk",
+          "references": "tb_orders.ID"
+        },
+        {
+          "name": "product_offer_ID",
+          "type": "int unsigned · NN · FK ext"
+        },
+        {
+          "name": "product_name",
+          "type": "varchar(250) · NN"
+        },
+        {
+          "name": "quantity",
+          "type": "int unsigned · NN"
+        },
+        {
+          "name": "unit_price",
+          "type": "decimal(10,2) · NN"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2) · NULL"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_categories",
+      "label": "tbd_products_categories",
+      "tag": "Catálogo",
+      "row": 2,
+      "col": 1,
+      "sublabel": "4 467 registros INSERT · 5 columnas",
+      "attributes": [
+        {
+          "name": "category_ID",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NN"
+        }
+      ]
+    },
+    {
+      "id": "tbd_products_users_providers",
+      "label": "tbd_products_users_providers",
+      "tag": "Usuarios",
+      "row": 3,
+      "col": 0,
+      "sublabel": "0 registros INSERT · 7 columnas",
+      "attributes": [
+        {
+          "name": "user_id",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_id",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "type_ownership",
+          "type": "enum(3 values) · NULL"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NN"
+        },
+        {
+          "name": "avalaible_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NN"
+        }
+      ]
+    },
+    {
+      "id": "tbd_users_wishlist_products",
+      "label": "tbd_users_wishlist_products",
+      "tag": "Usuarios",
+      "row": 2,
+      "col": 0,
+      "sublabel": "0 registros INSERT · 5 columnas",
+      "attributes": [
+        {
+          "name": "user_ID",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned · NN",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1) · NN"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime · NN"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime · NN"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel_tb_carts_user_ID_tb_users",
+      "from": "tb_carts",
+      "to": "tb_users",
+      "label": "fk_cart_user: user_ID → ID",
+      "fromCardinality": "one",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "rel_tb_orders_User_ID_tb_users",
+      "from": "tb_orders",
+      "to": "tb_users",
+      "label": "fk_user_2: User_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "rel_tb_payments_payment_method_ID_tb_payment_methods",
+      "from": "tb_payments",
+      "to": "tb_payment_methods",
+      "label": "fk_payment_method: payment_method_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "rel_tb_payments_order_ID_tb_orders",
+      "from": "tb_payments",
+      "to": "tb_orders",
+      "label": "fk_payment_order: order_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "rel_tbd_cart_items_cart_ID_tb_carts",
+      "from": "tbd_cart_items",
+      "to": "tb_carts",
+      "label": "fk_cart_item_cart: cart_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_order_items_order_ID_tb_orders",
+      "from": "tbd_order_items",
+      "to": "tb_orders",
+      "label": "fk_order_item_order: order_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": false
+    },
+    {
+      "id": "rel_tbd_products_categories_category_ID_tbc_categories",
+      "from": "tbd_products_categories",
+      "to": "tbc_categories",
+      "label": "fk_category: category_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_products_categories_product_ID_tb_products",
+      "from": "tbd_products_categories",
+      "to": "tb_products",
+      "label": "fk_product: product_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_products_users_providers_product_id_tb_products",
+      "from": "tbd_products_users_providers",
+      "to": "tb_products",
+      "label": "fk_products2: product_id → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_products_users_providers_user_id_tb_users",
+      "from": "tbd_products_users_providers",
+      "to": "tb_users",
+      "label": "fk_user1: user_id → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_users_wishlist_products_product_ID_tb_products",
+      "from": "tbd_users_wishlist_products",
+      "to": "tb_products",
+      "label": "fk_wishlist_product: product_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_users_wishlist_products_user_ID_tb_users",
+      "from": "tbd_users_wishlist_products",
+      "to": "tb_users",
+      "label": "fk_wishlist_user: user_ID → ID",
+      "fromCardinality": "many",
+      "fromOptional": false,
+      "toCardinality": "one",
+      "identifying": true
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_carts",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "user_ID: int unsigned NOT NULL; FK, UK; referencia tb_users.ID (fk_cart_user)",
+        "status: bit(1) DEFAULT b'1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_logs",
+      "items": [
+        "ID: int NOT NULL AUTO_INCREMENT; PK",
+        "table_name: varchar(100) NOT NULL; sin clave",
+        "operation: enum('Create','Read','Update','Delete') NOT NULL; sin clave",
+        "db_users: varchar(80) NOT NULL; sin clave",
+        "description: text NOT NULL; sin clave",
+        "operation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "operation_status: bit(1) DEFAULT b'1'; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_orders",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "key: varchar(40) NOT NULL; sin clave",
+        "User_ID: int unsigned NOT NULL; FK; referencia tb_users.ID (fk_user_2)",
+        "total_products: int NOT NULL; sin clave",
+        "total_cost: decimal(10,3) NOT NULL DEFAULT '0.000'; sin clave",
+        "status_string: enum('Registered','Payed','Canceled','Delivered','Devolved','Attended','Sended') NOT NULL DEFAULT 'Registered'; sin clave",
+        "status: bit(1) DEFAULT b'1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime DEFAULT NULL; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_payment_methods",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "name: varchar(60) NOT NULL; UK",
+        "description: varchar(255) DEFAULT NULL; sin clave",
+        "status: bit(1) NOT NULL DEFAULT b'1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_payments",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "order_ID: int unsigned NOT NULL; FK; referencia tb_orders.ID (fk_payment_order)",
+        "payment_method_ID: int unsigned NOT NULL; FK; referencia tb_payment_methods.ID (fk_payment_method)",
+        "amount: decimal(10,2) NOT NULL; sin clave",
+        "currency: char(3) NOT NULL DEFAULT 'MXN'; sin clave",
+        "payment_status: enum('Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded') NOT NULL DEFAULT 'Pending'; sin clave",
+        "provider: varchar(60) DEFAULT NULL; sin clave",
+        "provider_reference: varchar(150) DEFAULT NULL; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "paid_date: datetime DEFAULT NULL; sin clave",
+        "last_update: datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_products",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "SKU: varchar(50) NOT NULL; UK",
+        "name: varchar(250) NOT NULL; sin clave",
+        "description: text; sin clave",
+        "current_price: decimal(10,2) NOT NULL DEFAULT '0.00'; sin clave",
+        "current_stock: int unsigned NOT NULL DEFAULT '0'; sin clave",
+        "status: varchar(50) DEFAULT NULL; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tb_users",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "email: varchar(80) NOT NULL; UK",
+        "nickname: varchar(100) NOT NULL; UK",
+        "password: varchar(255) NOT NULL; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; sin clave",
+        "last_login: datetime DEFAULT NULL; sin clave",
+        "status: bit(1) NOT NULL DEFAULT b'1'; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tbc_categories",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "name: varchar(120) NOT NULL; UK",
+        "description: text; sin clave",
+        "sup_id_category: int unsigned DEFAULT NULL; FK; referencia tbc_categories.ID (fk_superior_category)",
+        "status: bit(1) NOT NULL DEFAULT b'1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tbd_cart_items",
+      "items": [
+        "cart_ID: int unsigned NOT NULL; PK, FK; referencia tb_carts.ID (fk_cart_item_cart)",
+        "product_offer_ID: int unsigned NOT NULL; PK; referencia tb_users_offer_products.product_offer_ID (fk_cart_item_offer)",
+        "quantity: int unsigned NOT NULL DEFAULT '1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tbd_order_items",
+      "items": [
+        "ID: int unsigned NOT NULL AUTO_INCREMENT; PK",
+        "order_ID: int unsigned NOT NULL; FK; referencia tb_orders.ID (fk_order_item_order)",
+        "product_offer_ID: int unsigned NOT NULL; sin clave; referencia tb_users_offer_products.product_offer_ID (fk_order_item_offer)",
+        "product_name: varchar(250) NOT NULL; sin clave",
+        "quantity: int unsigned NOT NULL; sin clave",
+        "unit_price: decimal(10,2) NOT NULL; sin clave",
+        "subtotal: decimal(12,2) GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tbd_products_categories",
+      "items": [
+        "category_ID: int unsigned NOT NULL; PK, FK; referencia tbc_categories.ID (fk_category)",
+        "product_ID: int unsigned NOT NULL; PK, FK; referencia tb_products.ID (fk_product)",
+        "status: bit(1) NOT NULL DEFAULT b'1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tbd_products_users_providers",
+      "items": [
+        "user_id: int unsigned NOT NULL; PK, FK; referencia tb_users.ID (fk_user1)",
+        "product_id: int unsigned NOT NULL; PK, FK; referencia tb_products.ID (fk_products2)",
+        "type_ownership: enum('Owner','Reseller','Distributor') DEFAULT NULL; sin clave",
+        "status: bit(1) NOT NULL DEFAULT b'1'; sin clave",
+        "avalaible_date: datetime NOT NULL; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Columnas · tbd_users_wishlist_products",
+      "items": [
+        "user_ID: int unsigned NOT NULL; PK, FK; referencia tb_users.ID (fk_wishlist_user)",
+        "product_ID: int unsigned NOT NULL; PK, FK; referencia tb_products.ID (fk_wishlist_product)",
+        "status: bit(1) NOT NULL DEFAULT b'1'; sin clave",
+        "creation_date: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP; sin clave",
+        "last_update: datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; sin clave"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tb_carts",
+      "items": [
+        "UNIQUE uk_cart_user (user_ID)",
+        "FOREIGN KEY fk_cart_user: (user_ID) → tb_users(ID)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tb_orders",
+      "items": [
+        "KEY `fk_user_2_idx` (`User_ID`)",
+        "FOREIGN KEY fk_user_2: (User_ID) → tb_users(ID)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tb_payment_methods",
+      "items": [
+        "UNIQUE uk_payment_method_name (name)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tb_payments",
+      "items": [
+        "UNIQUE uk_payment_provider_reference (provider, provider_reference)",
+        "KEY `idx_payment_order` (`order_ID`)",
+        "KEY `fk_payment_method` (`payment_method_ID`)",
+        "FOREIGN KEY fk_payment_method: (payment_method_ID) → tb_payment_methods(ID)",
+        "FOREIGN KEY fk_payment_order: (order_ID) → tb_orders(ID)",
+        "CONSTRAINT `chk_payment_amount` CHECK ((`amount` > 0))"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tb_products",
+      "items": [
+        "UNIQUE SKU (SKU)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tb_users",
+      "items": [
+        "UNIQUE email (email)",
+        "UNIQUE nickname (nickname)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tbc_categories",
+      "items": [
+        "UNIQUE name (name)",
+        "KEY `fk_superior_category` (`sup_id_category`)",
+        "FOREIGN KEY fk_superior_category: (sup_id_category) → tbc_categories(ID)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tbd_cart_items",
+      "items": [
+        "KEY `fk_cart_item_offer` (`product_offer_ID`)",
+        "FOREIGN KEY fk_cart_item_cart: (cart_ID) → tb_carts(ID)",
+        "FOREIGN KEY fk_cart_item_offer: (product_offer_ID) → tb_users_offer_products(product_offer_ID)",
+        "CONSTRAINT `chk_cart_item_quantity` CHECK ((`quantity` > 0))"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tbd_order_items",
+      "items": [
+        "KEY `idx_order_items_order` (`order_ID`)",
+        "KEY `idx_order_items_offer` (`product_offer_ID`)",
+        "FOREIGN KEY fk_order_item_offer: (product_offer_ID) → tb_users_offer_products(product_offer_ID)",
+        "FOREIGN KEY fk_order_item_order: (order_ID) → tb_orders(ID)",
+        "CONSTRAINT `chk_order_item_price` CHECK ((`unit_price` >= 0))",
+        "CONSTRAINT `chk_order_item_quantity` CHECK ((`quantity` > 0))"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tbd_products_categories",
+      "items": [
+        "KEY `fk_product` (`product_ID`)",
+        "FOREIGN KEY fk_category: (category_ID) → tbc_categories(ID)",
+        "FOREIGN KEY fk_product: (product_ID) → tb_products(ID)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tbd_products_users_providers",
+      "items": [
+        "KEY `fk_products2` (`product_id`)",
+        "FOREIGN KEY fk_products2: (product_id) → tb_products(ID)",
+        "FOREIGN KEY fk_user1: (user_id) → tb_users(ID)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Restricciones · tbd_users_wishlist_products",
+      "items": [
+        "KEY `fk_wishlist_product` (`product_ID`)",
+        "FOREIGN KEY fk_wishlist_product: (product_ID) → tb_products(ID)",
+        "FOREIGN KEY fk_wishlist_user: (user_ID) → tb_users(ID)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Relaciones y límites del respaldo",
+      "items": [
+        "Las relaciones directas corresponden únicamente a FOREIGN KEY declaradas; la cardinalidad se deriva de la unicidad y nulabilidad de la FK.",
+        "Las asociaciones N:M usan entidades puente: tbd_products_categories (productos–categorías), tbd_users_wishlist_products (usuarios–productos), tbd_products_users_providers (usuarios–productos) y tbd_cart_items (carritos–ofertas).",
+        "La FK autorreferente tbc_categories.sup_id_category → tbc_categories.ID se conserva en la tabla y su tarjeta de restricción; Archify no permite dibujar una relación de entidad consigo misma.",
+        "El respaldo referencia tb_users_offer_products.product_offer_ID desde tbd_cart_items y tbd_order_items, pero no define esa tabla; esas dos relaciones quedan señaladas como referencias externas no resueltas.",
+        "Cada conteo suma las tuplas encontradas en INSERT INTO del dump; CREATE TABLE sin INSERT se muestra como 0."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "7b46eba0-aa21-4d3f-91e5-7b0f76b39e1e",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\candidate.json",
+  "output": "C:\\Users\\ti_la\\Documents\\Base de Datos\\Practicas_BDN_240463\\.archify\\erd-respaldo-14102026-20261014-174859\\respaldo-14102026.html",
+  "specification": {
+    "sha256": "a088210b2eb9dfdff209e5b2da4e4dd06cbac3fca43ce39234b515bc33d4cb4e",
+    "bytes": 31488
+  },
+  "artifact": {
+    "sha256": "ec6758b97f5e9d7de9423eb4146d5fd19654526917944f52df73912cc31bf442",
+    "bytes": 907355
+  }
+}
