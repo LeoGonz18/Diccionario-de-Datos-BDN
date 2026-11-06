@@ -159,7 +159,7 @@ candidate = {
     "meta": {
         "title": "Modelo de datos · respaldo db_test 29/10/2026",
         "locale": "es",
-        "output": "Diagrama Entidad-Relacion/.archify/erd-respaldo-29102026-20261029-223217/modelo-db-test-29102026.html",
+        "output": "Diagrama Entidad-Relacion/modelo-db-test-29102026.html",
         "quality_profile": "standard",
         "views": [
             {"id": "commerce", "label": "Compras y pagos", "focus": ["tb_orders", "tbd_order_items", "tb_payments", "tb_payment_transaction", "tb_shipments", "tb_returns", "tb_order_cancellations"]},
